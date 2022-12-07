@@ -5,6 +5,8 @@ import TextField from './TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { addMoney, getMoney } from '../functions/request';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
 const INITIAL_FORM_STATE = {
   aHundred: '',
@@ -67,6 +69,7 @@ const amountValidation = (_aHundred, _fifty, _twenty, _ten, _five, _two) => {
 };
 
 const AddMoneyForm = () => {
+  const { setView } = useContext(UserContext);
   return (
     <Formik
       initialValues={{ ...INITIAL_FORM_STATE }}
@@ -158,6 +161,18 @@ const AddMoneyForm = () => {
             <TextField name='two' variant='outlined' placeholder='00000000' />
           </Grid>
           <Grid item xs={12}>
+            <Button
+              type='button'
+              variant='outlined'
+              sx={{
+                padding: '15px 40px',
+                fontSize: '20px',
+                marginRight: '50px',
+              }}
+              onClick={() => setView(3)}
+            >
+              Back
+            </Button>
             <Button
               type='submit'
               variant='contained'

@@ -16,12 +16,12 @@ const FORM_VALIDATION = yup.object().shape({
   cardNumber: yup
     .number()
     .integer()
-    .required()
+    .required('Please enter a valid card number')
     .typeError('Please enter a valid card number'),
   securityCode: yup
     .number()
     .integer()
-    .required()
+    .required('Please enter a valid security code')
     .typeError('Please enter a valid security code'),
 });
 

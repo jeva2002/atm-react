@@ -7,7 +7,11 @@ const Login = () => {
   const [isUser, setIsUser] = useState(null);
 
   return (
-    <Container maxWidth={'xs'} component='main'>
+    <Container
+      maxWidth={'xs'}
+      component='main'
+      sx={{ backgroundColor: '#ededed', padding: '80px', borderRadius: '10px' }}
+    >
       <Typography variant='h3' component='h1'>
         Welcome to Teban ATM
       </Typography>

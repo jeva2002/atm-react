@@ -15,7 +15,7 @@ const TextField = ({ name, ...otherProps }) => {
     configTextField.helperText = meta.error;
   }
 
-  return <TextFieldMaterial {...configTextField} />;
+  return <TextFieldMaterial type='number' {...configTextField} />;
 };
 
 export default TextField;

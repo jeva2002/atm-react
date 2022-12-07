@@ -29,7 +29,15 @@ const AdminDetail = () => {
           This is the admin section so you can use it to add money to the ATM,
           and to watch the money available.
         </Typography>
-        <Button type='button' variant='contained' onClick={() => setView(3)}>
+        <Button
+          type='button'
+          sx={{ marginRight: '25px' }}
+          variant='outlined'
+          onClick={() => setView(1)}
+        >
+          Exit Admin
+        </Button>
+        <Button type='button' variant='contained' onClick={() => setView(4)}>
           Add Money
         </Button>
       </Grid>

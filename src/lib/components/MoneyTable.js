@@ -19,11 +19,18 @@ const createRows = (_money) => {
 
 const MoneyTable = () => {
   const [money, setMoney] = useState({});
+  const [accumulated, setAccumulated] = useState(0);
 
   useEffect(() => {
     getMoney().then((res) => {
       setMoney(res.data);
     });
+    const totalDenomination = document.querySelectorAll('.totalDenomination');
+    let total = 0;
+    for (let i = 0; i < totalDenomination.length; i++) {
+      total += parseInt(totalDenomination[i].innerHTML);
+    }
+    setAccumulated(total);
   }, []);
 
   return (
@@ -35,22 +42,34 @@ const MoneyTable = () => {
             <TableCell align='right'>ID</TableCell>
             <TableCell align='right'>DENOMINATION</TableCell>
             <TableCell align='right'>AMOUNT</TableCell>
+            <TableCell align='right'>TOTAL</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {createRows(money).map((element) => {
+            const totalDenomination = element.denomination * element.amount;
             return (
               <TableRow
                 key={element.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align='center'>{element.name}</TableCell>
-                <TableCell align='right'>{element.id}</TableCell>
-                <TableCell align='right'>{element.denomination}</TableCell>
-                <TableCell align='right'>{element.amount}</TableCell>
+                <TableCell align='center'>{element.id}</TableCell>
+                <TableCell align='center'>{element.denomination}</TableCell>
+                <TableCell align='center'>{element.amount}</TableCell>
+                <TableCell className='totalDenomination' align='right'>
+                  {totalDenomination}
+                </TableCell>
               </TableRow>
             );
           })}
+          <TableRow>
+            <TableCell align='center'>TOTAL</TableCell>
+            <TableCell align='right'></TableCell>
+            <TableCell align='right'></TableCell>
+            <TableCell align='right'></TableCell>
+            <TableCell align='right'>{accumulated}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
