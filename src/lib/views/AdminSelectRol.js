@@ -5,7 +5,16 @@ import { useContext } from 'react';
 import { UserContext } from '../../App';
 
 const AdminSelectRol = () => {
-  const { setView } = useContext(UserContext);
+  const { setView, setUser, user } = useContext(UserContext);
+
+  const setUserRol = () => {
+    const newRol = {
+      ...user,
+    };
+    newRol.type = 'user';
+    setUser(newRol);
+    setView(3);
+  };
   return (
     <main>
       <Typography variant='h3' component='h1' marginBottom='100px'>
@@ -32,6 +41,7 @@ const AdminSelectRol = () => {
             variant='contained'
             color='secondary'
             sx={{ fontSize: '30px', padding: '40px 80px' }}
+            onClick={() => setUserRol()}
           >
             User
           </Button>

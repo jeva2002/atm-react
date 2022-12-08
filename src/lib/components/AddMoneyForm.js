@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import TextField from './TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import InputAdornment from '@mui/material/InputAdornment';
 import { addMoney, getMoney } from '../functions/request';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
@@ -74,13 +75,12 @@ const AddMoneyForm = () => {
     <Formik
       initialValues={{ ...INITIAL_FORM_STATE }}
       validationSchema={FORM_VALIDATION}
-      validate={() => {}}
+      validate={(values) => {}}
       onSubmit={async ({ aHundred, fifty, twenty, ten, five, two }) => {
         try {
           const values = [
             ...amountValidation(aHundred, fifty, twenty, ten, five, two),
           ];
-          console.log(values);
           if (values.length) {
             const denominations = await (await getMoney()).data;
             values.forEach(async ([id, amount]) => {
@@ -88,14 +88,11 @@ const AddMoneyForm = () => {
                 (denomination) => denomination.id === id
               );
               denomination.amount += amount / denomination.denomination;
-              setTimeout(() => {
-                try {
-                  addMoney(denomination, id);
-                } catch (e) {
-                  console.error(e);
-                }
-              }, 2000);
             });
+            for (let i = 0; i < denominations.length; i++) {
+              await addMoney(denominations[i], denominations[i].id);
+            }
+            setView(3);
           }
         } catch (e) {
           console.error(e);
@@ -114,6 +111,11 @@ const AddMoneyForm = () => {
               name='aHundred'
               variant='outlined'
               placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
             />
           </Grid>
           <Grid item xs={2} sx={{ marginTop: '15px' }}>
@@ -122,7 +124,16 @@ const AddMoneyForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={9}>
-            <TextField name='fifty' variant='outlined' placeholder='00000000' />
+            <TextField
+              name='fifty'
+              variant='outlined'
+              placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
+            />
           </Grid>
           <Grid item xs={2} sx={{ marginTop: '15px' }}>
             <Typography variant='subtitle1' component='label'>
@@ -134,6 +145,11 @@ const AddMoneyForm = () => {
               name='twenty'
               variant='outlined'
               placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
             />
           </Grid>
           <Grid item xs={2} sx={{ marginTop: '15px' }}>
@@ -142,7 +158,16 @@ const AddMoneyForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={9}>
-            <TextField name='ten' variant='outlined' placeholder='00000000' />
+            <TextField
+              name='ten'
+              variant='outlined'
+              placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
+            />
           </Grid>
           <Grid item xs={2} sx={{ marginTop: '15px' }}>
             <Typography variant='subtitle1' component='label'>
@@ -150,7 +175,16 @@ const AddMoneyForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={9}>
-            <TextField name='five' variant='outlined' placeholder='00000000' />
+            <TextField
+              name='five'
+              variant='outlined'
+              placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
+            />
           </Grid>
           <Grid item xs={2} sx={{ marginTop: '15px' }}>
             <Typography variant='subtitle1' component='label'>
@@ -158,7 +192,16 @@ const AddMoneyForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={9}>
-            <TextField name='two' variant='outlined' placeholder='00000000' />
+            <TextField
+              name='two'
+              variant='outlined'
+              placeholder='00000000'
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position='start'>$</InputAdornment>
+                ),
+              }}
+            />
           </Grid>
           <Grid item xs={12}>
             <Button

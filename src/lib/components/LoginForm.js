@@ -64,8 +64,13 @@ const LoginForm = ({ submitLogin }) => {
               variant='standard'
             />
           </Grid>
-          <Grid item xs={12}>
-            <Button fullWidth variant='contained' type='submit'>
+          <Grid item xs={12} marginTop='30px'>
+            <Button
+              fullWidth
+              variant='contained'
+              type='submit'
+              sx={{ fontSize: '18px' }}
+            >
               Log in
             </Button>
           </Grid>

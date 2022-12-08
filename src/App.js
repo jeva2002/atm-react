@@ -3,13 +3,15 @@ import './App.css';
 import Login from './lib/views/Login';
 import { useState, createContext, lazy, Suspense } from 'react';
 import AdminSelectRol from './lib/views/AdminSelectRol';
+import UserDetail from './lib/views/UserDetail';
+import Success from './lib/views/Success';
 
 const AdminDetail = lazy(() => import('./lib/views/AdminDetail'));
 const AddMoney = lazy(() => import('./lib/views/AddMoney'));
 
 export const UserContext = createContext(null);
 
-const selectView = (_view, _user, _setView) => {
+const selectView = (_view, _user, _setView, _setUser) => {
   switch (_view) {
     case 1:
       return <Login />;
@@ -20,9 +22,9 @@ const selectView = (_view, _user, _setView) => {
         break;
       }
     case 3:
-      return _user.type === 'admin' ? <AdminDetail /> : <div>nichi</div>;
+      return _user.type === 'admin' ? <AdminDetail /> : <UserDetail />;
     case 4:
-      return _user.type === 'admin' ? <AddMoney /> : <div>nichi</div>;
+      return _user.type === 'admin' ? <AddMoney /> : <Success />;
     default:
       return <div>error del view</div>;
   }
@@ -30,13 +32,7 @@ const selectView = (_view, _user, _setView) => {
 
 function App() {
   const [view, setView] = useState(1);
-  const [user, setUser] = useState({
-    id: 3,
-    name: 'Juanito',
-    cardNumber: 1234123412341234,
-    securityCode: 123,
-    type: 'admin',
-  });
+  const [user, setUser] = useState({});
 
   return (
     <Suspense fallback={<div>Holi</div>}>
@@ -44,7 +40,13 @@ function App() {
         <Container
           fixed
           maxWidth='lg'
-          sx={{ marginTop: '10%', textAlign: 'center' }}
+          sx={{
+            marginTop: '10%',
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
           className='App'
         >
           {selectView(view, user, setView)}

@@ -14,7 +14,15 @@ const getMoney = async () => {
 };
 
 const addMoney = async (_body, _id) => {
-  return await BASE_REQUEST.patch(`money/${_id}`, _body);
+  return BASE_REQUEST.patch(`money/${_id}`, _body);
 };
 
-export { login, getMoney, addMoney };
+const takeMoneyUser = async (_body, _id) => {
+  return await BASE_REQUEST.patch(`users/${_id}`, _body);
+};
+
+const takeMoneyAtm = async (_body, _id) => {
+  return BASE_REQUEST.patch(`money/${_id}`, _body);
+};
+
+export { login, getMoney, addMoney, takeMoneyUser, takeMoneyAtm };

@@ -21,17 +21,21 @@ const MoneyTable = () => {
   const [money, setMoney] = useState({});
   const [accumulated, setAccumulated] = useState(0);
 
+  let total = 0;
+
   useEffect(() => {
     getMoney().then((res) => {
       setMoney(res.data);
     });
+  }, []);
+
+  useEffect(() => {
     const totalDenomination = document.querySelectorAll('.totalDenomination');
-    let total = 0;
     for (let i = 0; i < totalDenomination.length; i++) {
       total += parseInt(totalDenomination[i].innerHTML);
     }
     setAccumulated(total);
-  }, []);
+  });
 
   return (
     <TableContainer component={Paper}>
