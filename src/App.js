@@ -1,10 +1,9 @@
-import Container from '@mui/system/Container';
-import './App.css';
 import Login from './lib/views/Login';
-import { useState, createContext, lazy, Suspense } from 'react';
 import AdminSelectRol from './lib/views/AdminSelectRol';
 import UserDetail from './lib/views/UserDetail';
-import { Typography } from '@mui/material';
+import Loading from './lib/views/Loading';
+import Container from '@mui/system/Container';
+import { useState, createContext, lazy, Suspense } from 'react';
 
 const AdminDetail = lazy(() => import('./lib/views/AdminDetail'));
 const AddMoney = lazy(() => import('./lib/views/AddMoney'));
@@ -37,14 +36,7 @@ function App() {
   const [delivered, setDelivered] = useState();
 
   return (
-    <Suspense
-      fallback={
-        <Typography variant='h2' component='h1'>
-          {' '}
-          Loading...
-        </Typography>
-      }
-    >
+    <Suspense fallback={<Loading />}>
       <UserContext.Provider
         value={{ user, setUser, setView, delivered, setDelivered }}
       >

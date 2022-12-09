@@ -3,37 +3,37 @@
     {
       "id": 1,
       "denomination": 100000,
-      "amount": 1,
+      "amount": 2,
       "name": "A Hundred Thousand"
     },
     {
       "id": 2,
       "denomination": 50000,
-      "amount": 1,
+      "amount": 3,
       "name": "Fifty Thousand"
     },
     {
       "id": 3,
       "denomination": 20000,
-      "amount": 1,
+      "amount": 6,
       "name": "Twenty Thousand"
     },
     {
       "id": 4,
       "denomination": 10000,
-      "amount": 1,
+      "amount": 11,
       "name": "Ten Thousand"
     },
     {
       "id": 5,
       "denomination": 5000,
-      "amount": 1,
+      "amount": 21,
       "name": "Five Thousand"
     },
     {
       "id": 6,
       "denomination": 2000,
-      "amount": 1,
+      "amount": 51,
       "name": "Two Thousand"
     }
   ],
