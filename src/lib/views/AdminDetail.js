@@ -6,7 +6,7 @@ import { UserContext } from '../../App';
 const MoneyTable = lazy(() => import('../components/MoneyTable'));
 
 const AdminDetail = () => {
-  const { user, setView } = useContext(UserContext);
+  const { user, setUser, setView } = useContext(UserContext);
 
   return (
     <Grid
@@ -33,11 +33,20 @@ const AdminDetail = () => {
           type='button'
           sx={{ marginRight: '25px' }}
           variant='outlined'
-          onClick={() => setView(1)}
+          onClick={() => {
+            setUser({});
+            setView(1);
+          }}
         >
           Exit Admin
         </Button>
-        <Button type='button' variant='contained' onClick={() => setView(4)}>
+        <Button
+          type='button'
+          variant='contained'
+          onClick={() => {
+            setView(4);
+          }}
+        >
           Add Money
         </Button>
       </Grid>

@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { getMoney } from '../functions/request';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,6 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useState, useEffect } from 'react';
 
 const createRows = (_money) => {
   const rows = [];
@@ -17,24 +16,20 @@ const createRows = (_money) => {
   return rows;
 };
 
-const MoneyTable = () => {
-  const [money, setMoney] = useState({});
-  const [accumulated, setAccumulated] = useState(0);
-
+const getTotal = (_setTotal) => {
+  const totalDenomination = document.querySelectorAll('.totalDenomination');
   let total = 0;
+  for (let i = 0; i < totalDenomination.length; i++) {
+    total += parseInt(totalDenomination[i].innerHTML);
+  }
+  _setTotal(total);
+};
+
+const DeliveredTable = ({ delivered }) => {
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    getMoney().then((res) => {
-      setMoney(res.data);
-    });
-  }, []);
-
-  useEffect(() => {
-    const totalDenomination = document.querySelectorAll('.totalDenomination');
-    for (let i = 0; i < totalDenomination.length; i++) {
-      total += parseInt(totalDenomination[i].innerHTML);
-    }
-    setAccumulated(total);
+    getTotal(setTotal);
   });
 
   return (
@@ -50,7 +45,7 @@ const MoneyTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {createRows(money).map((element) => {
+          {createRows(delivered).map((element) => {
             const totalDenomination = element.denomination * element.amount;
             return (
               <TableRow
@@ -61,7 +56,7 @@ const MoneyTable = () => {
                 <TableCell align='center'>{element.id}</TableCell>
                 <TableCell align='center'>{element.denomination}</TableCell>
                 <TableCell align='center'>{element.amount}</TableCell>
-                <TableCell className='totalDenomination' align='right'>
+                <TableCell className='totalDenomination' align='center'>
                   {totalDenomination}
                 </TableCell>
               </TableRow>
@@ -69,10 +64,10 @@ const MoneyTable = () => {
           })}
           <TableRow>
             <TableCell align='center'>TOTAL</TableCell>
-            <TableCell align='right'></TableCell>
-            <TableCell align='right'></TableCell>
-            <TableCell align='right'></TableCell>
-            <TableCell align='right'>{accumulated}</TableCell>
+            <TableCell align='center'></TableCell>
+            <TableCell align='center'></TableCell>
+            <TableCell align='center'></TableCell>
+            <TableCell align='center'>{total}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -80,4 +75,4 @@ const MoneyTable = () => {
   );
 };
 
-export default MoneyTable;
+export default DeliveredTable;

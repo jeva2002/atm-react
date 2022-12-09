@@ -1,10 +1,17 @@
 import Typography from '@mui/material/Typography';
 import LoginForm from '../components/LoginForm';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { UserContext } from '../../App';
 import { Container } from '@mui/material';
 
 const Login = () => {
   const [isUser, setIsUser] = useState(null);
+  const { setUser, setDelivered } = useContext(UserContext);
+
+  useEffect(() => {
+    setDelivered();
+    setUser();
+  });
 
   return (
     <Container

@@ -10,7 +10,7 @@ import { takeMoneyUser } from '../functions/request';
 import { giveMoney } from '../functions/giveMoney';
 
 const WithdrawalForm = () => {
-  const { setView, user, setUser } = useContext(UserContext);
+  const { setView, user, setUser, setDelivered } = useContext(UserContext);
   return (
     <Formik
       initialValues={{ amount: '' }}
@@ -37,7 +37,8 @@ const WithdrawalForm = () => {
           newUser.available -= amount;
           setUser(newUser);
           await takeMoneyUser({ available: newUser.available }, user.id);
-          giveMoney(amount);
+          setDelivered('');
+          giveMoney(amount, setDelivered);
           setView(4);
         } catch (e) {
           console.error(e);
