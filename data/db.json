@@ -1,0 +1,66 @@
+{
+  "money": [
+    {
+      "id": 1,
+      "denomination": 100000,
+      "amount": 1,
+      "name": "A Hundred Thousand"
+    },
+    {
+      "id": 2,
+      "denomination": 50000,
+      "amount": 1,
+      "name": "Fifty Thousand"
+    },
+    {
+      "id": 3,
+      "denomination": 20000,
+      "amount": 1,
+      "name": "Twenty Thousand"
+    },
+    {
+      "id": 4,
+      "denomination": 10000,
+      "amount": 1,
+      "name": "Ten Thousand"
+    },
+    {
+      "id": 5,
+      "denomination": 5000,
+      "amount": 1,
+      "name": "Five Thousand"
+    },
+    {
+      "id": 6,
+      "denomination": 2000,
+      "amount": 1,
+      "name": "Two Thousand"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Martín",
+      "cardNumber": 4321432143214321,
+      "securityCode": 321,
+      "type": "user",
+      "available": 9000000
+    },
+    {
+      "id": 2,
+      "name": "Rosa",
+      "cardNumber": 9639963996399640,
+      "securityCode": 963,
+      "type": "user",
+      "available": 100000
+    },
+    {
+      "id": 3,
+      "name": "Juanito",
+      "cardNumber": 1234123412341234,
+      "securityCode": 123,
+      "type": "admin",
+      "available": 522000
+    }
+  ]
+}
