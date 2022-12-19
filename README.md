@@ -5,6 +5,7 @@ Para practicar React y algunas tecnologías de su entorno se realiza un cliente 
 ## Ejecución
 
 Al consumir un JSON server es indispensable que este se active antes de la ejecución del cliente en el puerto 3000, pues para este está diseñada la aplicación (npx json-server --watch data/db.json --port 3000). Posterior a esto, se deberá inicializar la ejecución del cliente; este en el momento no se ha pensado con una versión apta para producción por lo que se inicia con el comando básico de desarrollo que nos brinda create-react-app.
+Para ejecutar en producción se utiliza el comando (npx serve -s build)
 
 ## Uso
 
